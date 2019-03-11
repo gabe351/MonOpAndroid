@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MonOp</string>
+    <string name="contacts_title">Contato</string>
+    <string name="home_title">Tela principal</string>
+    <string name="search_title">Buscar obra</string>
+
+    <string name="contact_title">Contato</string>
+    <string name="contact_name">Digite seu nome</string>
+    <string name="contact_email">Digite seu email</string>
+    <string name="contact_subject">Digite o assunto</string>
+    <string name="contact_message">Digite a sua mensagem</string>
+    <string name="contact_send_email">Enviar mensagem</string>
+
+    <string name="required_field_error_message">Este campo é obrigatório</string>
+    <string name="invalid_email_error_message">Digite um email válido</string>
+</resources>

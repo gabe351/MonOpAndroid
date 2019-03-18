@@ -1,4 +1,4 @@
-package com.gabe.monop
+package com.gabe.monop.application.modules.contacts
 
 import android.content.Intent
 import android.net.Uri
@@ -11,7 +11,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.contact_fragment.*
+import com.gabe.monop.R
+import kotlinx.android.synthetic.main.fragment_contact.*
 
 class ContactFragment: Fragment() {
 
@@ -21,7 +22,7 @@ class ContactFragment: Fragment() {
     private lateinit var sendEmailButton: Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.contact_fragment, container, false)
+        inflater.inflate(R.layout.fragment_contact, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -47,7 +48,7 @@ class ContactFragment: Fragment() {
     }
 
     private fun sendEmail(name: String, subject: String, content: String) {
-        val email = "gabrielrosadn@gmail.com"
+        val email = "contatomonop@gmail.com"
 
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.type = "message/rfc822"

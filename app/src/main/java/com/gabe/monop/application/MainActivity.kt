@@ -1,8 +1,12 @@
-package com.gabe.monop
+package com.gabe.monop.application
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import com.gabe.monop.R
+import com.gabe.monop.application.modules.contacts.ContactFragment
+import com.gabe.monop.application.modules.home.HomeFragment
+import com.gabe.monop.application.modules.search.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

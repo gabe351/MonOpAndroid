@@ -1,23 +1,20 @@
 package com.gabe.monop.application
 
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import com.gabe.monop.R
 import com.gabe.monop.application.modules.contacts.ContactFragment
 import com.gabe.monop.application.modules.home.HomeFragment
 import com.gabe.monop.application.modules.search.SearchByUFFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        val actionBar = supportActionBar
-
         when (item.itemId) {
             R.id.home_fragment -> {
-                setActionBarTitle(actionBar, "MonOp")
+                toolbar.title = "MonOp"
 
                 val fragment = HomeFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
@@ -25,14 +22,14 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.search_fragment -> {
-                setActionBarTitle(actionBar, "Buscar obras")
+                toolbar.title = "Buscar obras"
                 val fragment = SearchByUFFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.contact_fragment -> {
-                setActionBarTitle(actionBar, "Contato")
+                toolbar.title = "Contato"
                 val fragment = ContactFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
                     .commit()
@@ -48,11 +45,5 @@ class MainActivity : AppCompatActivity() {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         navigation.selectedItemId = R.id.home_fragment
-    }
-
-    private fun setActionBarTitle(actionBar: ActionBar?, text: String) {
-        actionBar?.let {
-            it.title = text
-        }
     }
 }

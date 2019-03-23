@@ -19,8 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".application.modules.constructiondetail.ConstructionDetailActivity"/>
-        <activity android:name=".application.modules.search.SearchByTextActivity"/>
+        <activity android:name=".application.modules.constructiondetail.ConstructionDetailActivity"
+                  android:theme="@style/AppThemeWithActionBar"/>
+        <activity android:name=".application.modules.search.SearchByTextActivity"
+                  android:theme="@style/AppThemeWithActionBar"/>
     </application>
 
 </manifest>

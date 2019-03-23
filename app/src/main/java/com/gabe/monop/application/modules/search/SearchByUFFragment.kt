@@ -61,9 +61,6 @@ class SearchByUFFragment: Fragment() {
             Construction("Veremos o fim desta obra um dia"),
             Construction("Talvez ")
         )
-
-
-
     }
 
     private fun setSpinnerItems() {

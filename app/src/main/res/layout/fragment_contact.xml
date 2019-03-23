@@ -7,9 +7,9 @@
 
     <TextView
             android:layout_width="match_parent"
-            android:text="@string/contact_title"
+            android:text="Entre em contato consco"
             android:textStyle="bold"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_margin="16dp"
             android:layout_height="wrap_content"/>
 

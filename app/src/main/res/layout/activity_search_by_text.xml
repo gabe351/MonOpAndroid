@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:app="http://schemas.android.com/apk/res-auto"
+			  android:orientation="vertical"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent">
+
+	<androidx.appcompat.widget.SearchView
+			android:id="@+id/moviesSearchView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="16dp"
+			android:background="@android:color/white"
+			android:elevation="5dp"
+			app:queryHint="@string/app_name"
+			android:soundEffectsEnabled="true"
+			android:clickable="true"
+			android:focusable="true"
+	/>
+
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+		<TextView
+				android:id="@+id/emptyDataText"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_centerInParent="true"
+				android:text="Nenhuma obra encontrada para sua busca"
+				android:gravity="center"
+				android:textSize="20sp"
+				android:visibility="visible"
+		/>
+
+		<!--<android.support.v7.widget.RecyclerView-->
+				<!--android:id="@+id/moviesRecyclerView"-->
+				<!--android:layout_width="match_parent"-->
+				<!--android:layout_height="match_parent"-->
+				<!--android:background="@color/lightGray"-->
+		<!--/>-->
+
+		<ProgressBar
+				android:id="@+id/moviesProgressBar"
+				android:layout_gravity="center"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:indeterminate="true"
+				android:layout_centerInParent="true"
+				android:visibility="gone"
+		/>
+
+	</RelativeLayout>
+
+</LinearLayout>

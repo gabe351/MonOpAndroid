@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".application.modules.constructiondetail.ConstructionDetailActivity"/>
+        <activity android:name=".application.modules.search.SearchByTextActivity"/>
     </application>
 
 </manifest>

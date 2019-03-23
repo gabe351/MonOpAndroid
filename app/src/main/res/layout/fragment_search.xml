@@ -6,12 +6,36 @@
 		android:layout_height="match_parent">
 
 	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:text="SEARCH"
+		android:text="Buscar por UF"
 		android:gravity="center"
-		android:textColor="#ffffff"
-		android:background="@color/lightGray"
+		android:textSize="20sp"
+		android:padding="16dp"
+		android:textStyle="bold"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<com.jaredrummler.materialspinner.MaterialSpinner
+			android:id="@+id/uf_spinner"
+			android:layout_marginTop="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:hint="selecione o estado"
+			android:elevation="4dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+
+	<Button
+		android:id="@+id/search_by_text_button"
+		android:text="@string/search_button_title"
+		android:textSize="16sp"
+		style="@style/Widget.MaterialComponents.Button.TextButton"
+		android:layout_gravity="center"
+		android:layout_marginTop="3dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginBottom="16dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
 	/>
 
 </LinearLayout>

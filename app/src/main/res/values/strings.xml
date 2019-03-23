@@ -2,7 +2,7 @@
     <string name="app_name">MonOp</string>
     <string name="contacts_title">Contato</string>
     <string name="home_title">Tela principal</string>
-    <string name="search_title">Buscar obra</string>
+    <string name="search_title">Buscar obras</string>
 
     <string name="contact_title">Contato</string>
     <string name="contact_name">Digite seu nome</string>
@@ -13,4 +13,36 @@
 
     <string name="required_field_error_message">Este campo é obrigatório</string>
     <string name="invalid_email_error_message">Digite um email válido</string>
+    <string name="search_button_title"><u>Procurar por texto</u></string>
+
+    <string-array name="ufs">
+        <item value="AC">Acre</item>
+        <item value="AL">Alagoas</item>
+        <item value="AP">Amapá</item>
+        <item value="AM">Amazonas</item>
+        <item value="BA">Bahia</item>
+        <item value="CE">Ceará</item>
+        <item value="DF">Distrito Federal</item>
+        <item value="ES">Espírito Santo</item>
+        <item value="GO">Goiás</item>
+        <item value="MA">Maranhão</item>
+        <item value="MT">Mato Grosso</item>
+        <item value="MS">Mato Grosso do Sul</item>
+        <item value="MG">Minas Gerais</item>
+        <item value="PA">Pará</item>
+        <item value="PB">Paraíba</item>
+        <item value="PR">Paraná</item>
+        <item value="PE">Pernambuco</item>
+        <item value="PI">Piauí</item>
+        <item value="RJ">Rio de Janeiro</item>
+        <item value="RN">Rio Grande do Norte</item>
+        <item value="RS">Rio Grande do Sul</item>
+        <item value="RO">Rondônia</item>
+        <item value="RR">Roraima</item>
+        <item value="SC">Santa Catarina</item>
+        <item value="SP">São Paulo</item>
+        <item value="SE">Sergipe</item>
+        <item value="TO">Tocantins</item>
+    </string-array>
+
 </resources>

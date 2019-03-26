@@ -5,7 +5,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<ScrollView
+	<androidx.core.widget.NestedScrollView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
@@ -36,7 +36,7 @@
 						android:gravity="center"/>
 
 					<Button
-					  android:id="@+id/higher_investment_button"
+					  android:id="@+id/higherInvestmentButton"
 					  android:layout_width="match_parent"
 					  android:layout_height="match_parent"
 					  android:text="Maior: R$ 101.239.410.000,00"
@@ -46,7 +46,7 @@
 					  style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
 					<Button
-					  android:id="@+id/lower_investment_button"
+					  android:id="@+id/lowerInvestmentButton"
 					  android:layout_width="match_parent"
 					  android:layout_height="match_parent"
 					  android:text="Menor: R$ 3.828.000,00"
@@ -64,7 +64,21 @@
 			 android:layout_marginStart="5dp"
 			 android:layout_height="300dp"/>
 
+		   <TextView
+			 android:id="@+id/HomeFragmentConstructionsTitle"
+			 android:text="Listagem de obras"
+			 android:gravity="center"
+			 android:padding="16dp"
+			 android:textSize="20sp"
+			 android:textStyle="bold"
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"/>
+
+		   <androidx.recyclerview.widget.RecyclerView
+			 android:id="@+id/homeFragmentRecycler"
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"/>
 
 		</LinearLayout>
-	</ScrollView>
+	</androidx.core.widget.NestedScrollView>
 </LinearLayout>

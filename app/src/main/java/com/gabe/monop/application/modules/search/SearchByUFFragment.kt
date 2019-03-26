@@ -28,7 +28,7 @@ class SearchByUFFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        recyclerView = search_uf_recycler
+        recyclerView = searchUfRecycler
         recyclerView.adapter = context?.let { ConstructionAdapter(getFakeConstructions(), it) }
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager

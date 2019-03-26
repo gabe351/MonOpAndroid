@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gabe.monop.R
+import com.gabe.monop.application.modules.adapter.ConstructionAdapter
 import com.gabe.monop.application.modules.constructiondetail.ConstructionDetailActivity
+import com.gabe.monop.model.Construction
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -20,68 +22,20 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment: Fragment() {
 
-    private lateinit var higherInvestmentButton: Button
-    private lateinit var lowerInvestmentButton: Button
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        lowerInvestmentButton = lower_investment_button
-        higherInvestmentButton = higher_investment_button
 
-        goToConstructionDetail()
+        setupCardView()
 
-        val yEntries = listOf(
-            PieEntry(22f, "Em Execução"),
-            PieEntry(45f, "Em Obras"),
-            PieEntry(42f, "Em contratação"),
-            PieEntry(52f, "Em licitação"),
-            PieEntry(32f, "Concluido")
-        )
-        @ColorInt val mopa: Int = 0xFFFFA516.toInt();
+        setupChart()
 
-        val colors: List<Int> = listOf(
-            Color.GRAY,
-            Color.YELLOW,
-            mopa,
-            Color.MAGENTA,
-            Color.GREEN
-        )
-
-
-
-        val chart = pieChart
-        chart.isRotationEnabled = true
-        val description = Description()
-        description.text = ""
-        chart.description = description
-        chart.holeRadius = 40f
-        chart.setEntryLabelColor(Color.BLACK)
-        chart.setTransparentCircleAlpha(0)
-        chart.centerText = "Status das obras"
-        chart.setCenterTextSize(10f)
-        chart.setDrawEntryLabels(true)
-
-        val dataSet = PieDataSet(yEntries, "Status das obras")
-        dataSet.sliceSpace = 2f
-        dataSet.valueTextSize = 12f
-
-
-
-
-        dataSet.colors = colors
-
-        val legend = chart.legend
-        legend.form = Legend.LegendForm.CIRCLE
-
-        val data = PieData(dataSet)
-        chart.data = data
-        chart.invalidate()
+        setupRecyclerView()
     }
 
-    private fun goToConstructionDetail() {
+    private fun setupCardView() {
         val intent = Intent(context, ConstructionDetailActivity::class.java)
 
         lowerInvestmentButton.setOnClickListener {
@@ -99,5 +53,76 @@ class HomeFragment: Fragment() {
         }
     }
 
+    private fun setupChart() {
 
+        @ColorInt val executionColor: Int = 0xFFCCCCCC.toInt()
+        @ColorInt val hiringColor: Int = 0xFFBF7C11.toInt()
+        @ColorInt val inValuationColor: Int = 0xFFFFFF00.toInt()
+        @ColorInt val inConstructionColor: Int = 0xFFFFA516.toInt()
+        @ColorInt val completedColor: Int = 0xFF00FF00.toInt()
+
+        val colors: List<Int> = listOf(
+            inValuationColor,
+            inConstructionColor,
+            hiringColor,
+            executionColor,
+            completedColor
+        )
+
+        val entries = listOf(
+            PieEntry(20f, "Em licitação"),
+            PieEntry(5f, "Em contratação"),
+            PieEntry(45f, "Em Obras"),
+            PieEntry(35f, "Em Execução"),
+            PieEntry(8f, "Concluido")
+        )
+
+        val description = Description()
+        description.text = ""
+
+        val dataSet = PieDataSet(entries, "Status das obras")
+        dataSet.sliceSpace = 2f
+        dataSet.valueTextSize = 12f
+        dataSet.colors = colors
+
+        val data = PieData(dataSet)
+
+        val chart = pieChart
+        chart.isRotationEnabled = false
+        chart.description = description
+        chart.holeRadius = 40f
+        chart.setEntryLabelColor(Color.BLACK)
+        chart.setTransparentCircleAlpha(0)
+        chart.centerText = "Status das obras"
+        chart.setCenterTextSize(10f)
+        chart.setDrawEntryLabels(true)
+        chart.data = data
+        chart.invalidate()
+
+        val legend = chart.legend
+        legend.form = Legend.LegendForm.CIRCLE
+    }
+
+
+    private fun setupRecyclerView() {
+        homeFragmentRecycler.adapter = context?.let { ConstructionAdapter(getFakeConstructions(), it) }
+        val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        homeFragmentRecycler.layoutManager = layoutManager
+        homeFragmentRecycler.isNestedScrollingEnabled = false
+    }
+
+    private fun getFakeConstructions(): List<Construction> {
+        return listOf(
+            Construction("Obras"),
+            Construction("Minha obra com grande titulo"),
+            Construction("Terceira obra não finalizada"),
+            Construction("É triste ver o dinheiro publico indo embora para o bolso de quem já é rico"),
+            Construction("O pior de tudo é que a gente paga duas vezes por tudo, saúde, educação, segurança e eles ficam ricos"),
+            Construction("Essa gente não quer nada, quer pagar sem precedente, o problema do imposto é que ele é cobra pelo impostor"),
+            Construction("Frases"),
+            Construction("Pequena obra"),
+            Construction("Veremos o fim desta obra um dia"),
+            Construction("Talvez ")
+        )
+    }
 }

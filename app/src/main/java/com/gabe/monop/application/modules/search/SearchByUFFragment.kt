@@ -43,7 +43,7 @@ class SearchByUFFragment: Fragment() {
             }
         }
 
-        ufSpinner.setOnItemSelectedListener { view, position, id, item ->
+        ufSpinner.setOnItemSelectedListener { _, _, _, item ->
             Toast.makeText(context, item.toString(), Toast.LENGTH_SHORT).show()
         }
     }

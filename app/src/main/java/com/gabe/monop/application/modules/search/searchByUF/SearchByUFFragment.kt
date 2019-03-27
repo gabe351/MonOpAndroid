@@ -1,4 +1,4 @@
-package com.gabe.monop.application.modules.search
+package com.gabe.monop.application.modules.search.searchByUF
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gabe.monop.R
 import com.gabe.monop.application.modules.adapter.ConstructionAdapter
+import com.gabe.monop.application.modules.search.searchByText.SearchByTextActivity
 import com.gabe.monop.model.Construction
 import com.jaredrummler.materialspinner.MaterialSpinner
 import kotlinx.android.synthetic.main.fragment_search.*

@@ -1,4 +1,4 @@
-package com.gabe.monop.application.modules.search
+package com.gabe.monop.application.modules.search.searchByText
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

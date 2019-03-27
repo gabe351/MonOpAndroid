@@ -8,8 +8,9 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.gabe.monop"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -31,9 +32,12 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.vectordrawable:vectordrawable:1.0.0-beta01'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.android.support:multidex:1.0.3'
 
 //    Visual libs
     implementation 'com.jaredrummler:material-spinner:1.3.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'

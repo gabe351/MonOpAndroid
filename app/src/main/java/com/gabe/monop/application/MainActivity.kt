@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.gabe.monop.R
 import com.gabe.monop.application.modules.contacts.ContactFragment
 import com.gabe.monop.application.modules.home.HomeFragment
-import com.gabe.monop.application.modules.search.SearchByUFFragment
+import com.gabe.monop.application.modules.search.searchByUF.SearchByUFFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 

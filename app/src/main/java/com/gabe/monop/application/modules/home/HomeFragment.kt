@@ -10,6 +10,7 @@ import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gabe.monop.R
+import com.gabe.monop.application.MonopApplication
 import com.gabe.monop.application.modules.adapter.ConstructionAdapter
 import com.gabe.monop.application.modules.constructiondetail.ConstructionDetailActivity
 import com.gabe.monop.model.Construction
@@ -38,16 +39,26 @@ class HomeFragment: Fragment() {
     private fun setupCardView() {
         val intent = Intent(context, ConstructionDetailActivity::class.java)
 
+        val fakeConstruction = Construction(
+            "Title",
+            "1233333,00",
+            "DNIT",
+            "Ministério de transportes portos e aviação",
+            "31/1/2018",
+            "AL, PE, RJ",
+            "Maceió, Cupira",
+            "Nada a observar no caso em questão. Tá atrasada mesmo")
+
         lowerInvestmentButton.setOnClickListener {
             activity?.let { fragmentActivity ->
-                intent.putExtra("TEXT", "MENOR")
+                intent.putExtra(ConstructionDetailActivity.CONSTRUCTION_OBJECT, fakeConstruction)
                 fragmentActivity.startActivity(intent)
             }
         }
 
         higherInvestmentButton.setOnClickListener {
             activity?.let { fragmentActivity ->
-                intent.putExtra("TEXT", "MAIOR")
+                intent.putExtra(ConstructionDetailActivity.CONSTRUCTION_OBJECT, fakeConstruction)
                 fragmentActivity.startActivity(intent)
             }
         }
@@ -105,24 +116,9 @@ class HomeFragment: Fragment() {
 
 
     private fun setupRecyclerView() {
-        homeFragmentRecycler.adapter = context?.let { ConstructionAdapter(getFakeConstructions(), it) }
+        homeFragmentRecycler.adapter = context?.let { ConstructionAdapter(MonopApplication().getFakeConstructions(), it) }
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         homeFragmentRecycler.layoutManager = layoutManager
         homeFragmentRecycler.isNestedScrollingEnabled = false
-    }
-
-    private fun getFakeConstructions(): List<Construction> {
-        return listOf(
-            Construction("Obras"),
-            Construction("Minha obra com grande titulo"),
-            Construction("Terceira obra não finalizada"),
-            Construction("É triste ver o dinheiro publico indo embora para o bolso de quem já é rico"),
-            Construction("O pior de tudo é que a gente paga duas vezes por tudo, saúde, educação, segurança e eles ficam ricos"),
-            Construction("Essa gente não quer nada, quer pagar sem precedente, o problema do imposto é que ele é cobra pelo impostor"),
-            Construction("Frases"),
-            Construction("Pequena obra"),
-            Construction("Veremos o fim desta obra um dia"),
-            Construction("Talvez ")
-        )
     }
 }

@@ -1,18 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
 
-	<TextView
-		android:id="@+id/tital"
+   <androidx.core.widget.NestedScrollView
+	 android:layout_width="match_parent"
+	 android:layout_height="match_parent">
+
+	  <LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:text="Detail"
-		android:padding="16dp"
-		android:textSize="25sp"
-		android:textStyle="bold"
-		android:gravity="center"/>
+	  	android:orientation="vertical">
 
+		 <TextView
+		   android:id="@+id/constructionTitle"
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   android:text="Nome da obra"
+		   tools:text="Nome da obra"
+		   android:padding="16dp"
+		   android:textSize="20sp"
+		   android:textStyle="bold"
+		   android:gravity="center"/>
+
+		 <TextView
+		   android:id="@+id/constructionTotalInvestiment"
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   tools:text="Investimento toal: 124141241241241142142"
+		   android:padding="16dp"
+		   android:textSize="18sp"
+		   android:gravity="center"/>
+
+		 <TextView
+		   android:id="@+id/constructionResponsibleCompany"
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   tools:text="Orgão responsavel: IMA"
+		   android:padding="16dp"
+		   android:textSize="18sp"
+		   android:gravity="center"/>
+
+		 <TextView
+		   android:id="@+id/constructionResponsible"
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   tools:text="Empresa responsavel: IMA"
+		   android:padding="16dp"
+		   android:textSize="18sp"
+		   android:gravity="center"/>
+
+		 <TextView
+		   android:id="@+id/constructionDateLimit"
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   tools:text="Data limite: amanhã"
+		   android:padding="16dp"
+		   android:textSize="18sp"
+		   android:gravity="center"/>
+
+		 <TextView
+		   android:id="@+id/constructionUFs"
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   tools:text="Estados onde a obra ocorre: AL, RJ, PE"
+		   android:lines="3"
+		   android:padding="16dp"
+		   android:textSize="18sp"
+		   android:gravity="center"/>
+
+		 <TextView
+		   android:id="@+id/constructionCities"
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   tools:text="Municipios onde ocorre: AL, RJ, PE"
+		   android:lines="3"
+		   android:padding="16dp"
+		   android:textSize="18sp"
+		   android:gravity="center"/>
+
+		 <TextView
+		   android:id="@+id/constructionObservations"
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   tools:text="Obersvações: fafasfasfasfasfasfasfasfasfsafsfsafsafsafsafsafsafsafsasasafas"
+		   android:padding="16dp"
+		   android:textSize="18sp"
+		   android:gravity="center"/>
+
+	  </LinearLayout>
+   </androidx.core.widget.NestedScrollView>
 </LinearLayout>

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gabe.monop.R
+import com.gabe.monop.application.MonopApplication
 import com.gabe.monop.application.modules.adapter.ConstructionAdapter
 import com.gabe.monop.application.modules.search.searchByText.SearchByTextActivity
 import com.gabe.monop.model.Construction
@@ -30,7 +31,7 @@ class SearchByUFFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         recyclerView = searchUfRecycler
-        recyclerView.adapter = context?.let { ConstructionAdapter(getFakeConstructions(), it) }
+        recyclerView.adapter = context?.let { ConstructionAdapter(MonopApplication().getFakeConstructions(), it) }
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         searchByTextButton = search_by_text_button
@@ -47,21 +48,6 @@ class SearchByUFFragment: Fragment() {
         ufSpinner.setOnItemSelectedListener { _, _, _, item ->
             Toast.makeText(context, item.toString(), Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun getFakeConstructions(): List<Construction> {
-        return listOf(
-            Construction("Obras"),
-            Construction("Minha obra com grande titulo"),
-            Construction("Terceira obra não finalizada"),
-            Construction("É triste ver o dinheiro publico indo embora para o bolso de quem já é rico"),
-            Construction("O pior de tudo é que a gente paga duas vezes por tudo, saúde, educação, segurança e eles ficam ricos"),
-            Construction("Essa gente não quer nada, quer pagar sem precedente, o problema do imposto é que ele é cobra pelo impostor"),
-            Construction("Frases"),
-            Construction("Pequena obra"),
-            Construction("Veremos o fim desta obra um dia"),
-            Construction("Talvez ")
-        )
     }
 
     private fun setSpinnerItems() {

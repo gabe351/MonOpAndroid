@@ -1,5 +1,6 @@
 package com.gabe.monop.application.modules.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -13,7 +14,12 @@ import com.gabe.monop.R
 import com.gabe.monop.application.MonopApplication
 import com.gabe.monop.application.modules.adapter.ConstructionAdapter
 import com.gabe.monop.application.modules.constructiondetail.ConstructionDetailActivity
+import com.gabe.monop.datasources.BaseApiDataSource.Companion.createService
+import com.gabe.monop.datasources.BaseRemoteDataSource
+import com.gabe.monop.datasources.apidatasource.ConstructionApiDataSource
+import com.gabe.monop.datasources.remotedatasource.ConstructionRemoteDataSourceImpl
 import com.gabe.monop.model.Construction
+import com.gabe.monop.model.InvestimentResponse
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -21,7 +27,9 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment: Fragment() {
+class HomeFragment: Fragment(), HomeContracts.View {
+
+    private lateinit var homePresenter: HomeContracts.Presenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_home, container, false)
@@ -29,36 +37,33 @@ class HomeFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        setupCardView()
+        homePresenter = HomePresenter(this)
+
+        homePresenter.loadInvestments()
 
         setupChart()
 
         setupRecyclerView()
     }
 
-    private fun setupCardView() {
-        val intent = Intent(context, ConstructionDetailActivity::class.java)
+    @SuppressLint("SetTextI18n")
+    override fun loadInvestments(max: Construction, min: Construction) {
 
-        val fakeConstruction = Construction(
-            "Title",
-            "1233333,00",
-            "DNIT",
-            "Ministério de transportes portos e aviação",
-            "31/1/2018",
-            "AL, PE, RJ",
-            "Maceió, Cupira",
-            "Nada a observar no caso em questão. Tá atrasada mesmo")
+        higherInvestmentButton.text = "Maior: R$ ${max.totalInvestment}"
+        lowerInvestmentButton.text = "Menor: R$ ${min.totalInvestment}"
+
+        val intent = Intent(context, ConstructionDetailActivity::class.java)
 
         lowerInvestmentButton.setOnClickListener {
             activity?.let { fragmentActivity ->
-                intent.putExtra(ConstructionDetailActivity.CONSTRUCTION_OBJECT, fakeConstruction)
+                intent.putExtra(ConstructionDetailActivity.CONSTRUCTION_OBJECT, min)
                 fragmentActivity.startActivity(intent)
             }
         }
 
         higherInvestmentButton.setOnClickListener {
             activity?.let { fragmentActivity ->
-                intent.putExtra(ConstructionDetailActivity.CONSTRUCTION_OBJECT, fakeConstruction)
+                intent.putExtra(ConstructionDetailActivity.CONSTRUCTION_OBJECT, max)
                 fragmentActivity.startActivity(intent)
             }
         }

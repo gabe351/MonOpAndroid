@@ -27,7 +27,7 @@ class ConstructionDetailActivity: AppCompatActivity() {
         val construction = intent.getSerializableExtra(CONSTRUCTION_OBJECT) as? Construction
 
         val title = construction?.title ?: ""
-        val investment = construction?.totalInvestiment ?: "Não informado"
+        val investment = construction?.totalInvestment ?: "Não informado"
         val responsible = construction?.responsible ?: "Não informado"
         val responsibleCompany = construction?.responsibleCompany ?: "Não informado"
         val dateLimit = construction?.dateLimit ?: "Não informado"

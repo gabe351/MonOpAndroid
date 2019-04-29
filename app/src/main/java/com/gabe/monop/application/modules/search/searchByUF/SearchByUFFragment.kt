@@ -18,20 +18,26 @@ import com.gabe.monop.model.Construction
 import com.jaredrummler.materialspinner.MaterialSpinner
 import kotlinx.android.synthetic.main.fragment_search.*
 
-class SearchByUFFragment: Fragment() {
+class SearchByUFFragment: Fragment(), SearchByUFContracts.View {
 
     private lateinit var searchByTextButton: Button
     private lateinit var ufSpinner: MaterialSpinner
     private lateinit var recyclerView: RecyclerView
+    private lateinit var presenter: SearchByUFContracts.Presenter
+    private lateinit var adapter: ConstructionAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_search, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        presenter = SearchByUFPresenter(this)
 
         recyclerView = searchUfRecycler
-        recyclerView.adapter = context?.let { ConstructionAdapter(MonopApplication().getFakeConstructions(), it) }
+
+        adapter = ConstructionAdapter(emptyList(), context!!)
+
+        recyclerView.adapter = adapter
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         searchByTextButton = search_by_text_button
@@ -45,9 +51,22 @@ class SearchByUFFragment: Fragment() {
             }
         }
 
-        ufSpinner.setOnItemSelectedListener { _, _, _, item ->
-            Toast.makeText(context, item.toString(), Toast.LENGTH_SHORT).show()
+
+
+        ufSpinner.setOnItemSelectedListener { _, position, _, _ ->
+            val ufs = resources.getStringArray(R.array.ufs)
+
+            val selectedUf = ufs.get(position)
+
+            if (selectedUf.isNotBlank()) {
+                adapter.reloadData(emptyList())
+                presenter.loadConstructions(selectedUf)
+            }
         }
+    }
+
+    override fun loadConstructions(constructions: List<Construction>) {
+        adapter.reloadData(constructions)
     }
 
     private fun setSpinnerItems() {

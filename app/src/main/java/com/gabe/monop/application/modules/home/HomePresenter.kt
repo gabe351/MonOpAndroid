@@ -30,4 +30,26 @@ class HomePresenter(private val view: HomeContracts.View): HomeContracts.Present
             }
         })
     }
+
+    override fun loadConstructions() {
+        val remoteDataSource = ConstructionRemoteDataSourceImpl.getInstance(
+            BaseApiDataSource.createService(
+                ConstructionApiDataSource::class.java
+            )
+        )
+
+        remoteDataSource.getConstructionsByUf("AL", object: BaseRemoteDataSource.RemoteDataSourceCallback<List<Construction>> {
+            override fun onSuccess(response: List<Construction>) {
+                view.loadConstructions(response)
+            }
+
+            override fun onError(errorMessage: String) {
+                print("Error")
+            }
+
+            override fun isLoading(isLoading: Boolean) {
+                print("Loading")
+            }
+        })
+    }
 }

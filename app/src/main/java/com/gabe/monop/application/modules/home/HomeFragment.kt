@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment: Fragment(), HomeContracts.View {
 
     private lateinit var homePresenter: HomeContracts.Presenter
+    private lateinit var adapter: ConstructionAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_home, container, false)
@@ -38,8 +39,10 @@ class HomeFragment: Fragment(), HomeContracts.View {
         super.onActivityCreated(savedInstanceState)
 
         homePresenter = HomePresenter(this)
+        adapter = ConstructionAdapter(emptyList(), context!!)
 
         homePresenter.loadInvestments()
+        homePresenter.loadConstructions()
 
         setupChart()
 
@@ -121,9 +124,13 @@ class HomeFragment: Fragment(), HomeContracts.View {
 
 
     private fun setupRecyclerView() {
-        homeFragmentRecycler.adapter = context?.let { ConstructionAdapter(MonopApplication().getFakeConstructions(), it) }
+        homeFragmentRecycler.adapter = adapter
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         homeFragmentRecycler.layoutManager = layoutManager
         homeFragmentRecycler.isNestedScrollingEnabled = false
+    }
+
+    override fun loadConstructions(construction: List<Construction>) {
+        adapter.reloadData(construction)
     }
 }

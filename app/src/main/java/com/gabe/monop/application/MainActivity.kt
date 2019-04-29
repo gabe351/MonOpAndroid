@@ -1,5 +1,6 @@
 package com.gabe.monop.application
 
+import android.Manifest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.gabe.monop.R
@@ -7,6 +8,12 @@ import com.gabe.monop.application.modules.contacts.ContactFragment
 import com.gabe.monop.application.modules.home.HomeFragment
 import com.gabe.monop.application.modules.search.searchByUF.SearchByUFFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,5 +52,24 @@ class MainActivity : AppCompatActivity() {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         navigation.selectedItemId = R.id.home_fragment
+
+        Dexter.withActivity(this)
+            .withPermission(Manifest.permission.INTERNET)
+            .withListener(object: PermissionListener {
+                override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                    print("Success")
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permission: PermissionRequest?,
+                    token: PermissionToken?) {
+                    print("Rational something")
+                }
+
+                override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                    print("Denied")
+                }
+            })
+            .check()
     }
 }

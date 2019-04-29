@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.gabe.monop.R
 import com.gabe.monop.application.modules.constructiondetail.ConstructionDetailActivity
 import com.gabe.monop.model.Construction
+import io.reactivex.CompletableOnSubscribe
 import kotlinx.android.synthetic.main.construction_cell.view.*
 
-class ConstructionAdapter(private val constructions: List<Construction>,
+class ConstructionAdapter(private var constructions: List<Construction>,
                           private val context: Context): Adapter<ConstructionAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -38,6 +39,10 @@ class ConstructionAdapter(private val constructions: List<Construction>,
         holder.title.text = construction.title
     }
 
+    fun reloadData(constructions: List<Construction>) {
+        this.constructions = constructions
+        notifyDataSetChanged()
+    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val card: CardView = itemView.construction_cell_card_view

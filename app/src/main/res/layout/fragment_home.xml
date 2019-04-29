@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
 
 	<androidx.core.widget.NestedScrollView
 		android:layout_width="match_parent"
@@ -39,7 +39,7 @@
 					  android:id="@+id/higherInvestmentButton"
 					  android:layout_width="match_parent"
 					  android:layout_height="match_parent"
-					  android:text="Maior: R$ 101.239.410.000,00"
+					  tools:text="Maior: R$ 101.239.410.000,00"
 					  android:padding="16dp"
 					  android:textSize="20sp"
 					  android:gravity="center"
@@ -49,7 +49,7 @@
 					  android:id="@+id/lowerInvestmentButton"
 					  android:layout_width="match_parent"
 					  android:layout_height="match_parent"
-					  android:text="Menor: R$ 3.828.000,00"
+					  tools:text="Menor: R$ 3.828.000,00"
 					  android:padding="16dp"
 					  android:textSize="20sp"
 					  android:gravity="center"

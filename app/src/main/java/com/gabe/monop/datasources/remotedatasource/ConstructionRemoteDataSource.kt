@@ -8,7 +8,11 @@ import com.gabe.monop.model.InvestimentResponse
 
 interface ConstructionRemoteDataSource {
 
+    fun getAllConstructions(callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<Construction>>)
+
     fun loadHighAndLow(callback: BaseRemoteDataSource.RemoteDataSourceCallback<InvestimentResponse>)
 
     fun getConstructionsByUf(uf: String, callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<Construction>>)
+
+    fun getConstructionsByName(name: String, callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<Construction>>)
 }

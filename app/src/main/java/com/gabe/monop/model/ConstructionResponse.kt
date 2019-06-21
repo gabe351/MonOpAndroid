@@ -1,18 +1,35 @@
 package com.gabe.monop.model
 
-data class ConstructionResponse(val idn_empreendimento: String,
-                                val id_digs: IdDigsResponse,
-                                val titulo: String,
-                                val investimento_total: String,
-                                val sig_uf: String,
-                                val txt_municipios: String,
-                                val txt_executores: String,
-                                val dsc_orgao: String,
-                                val id_estagio: IdnEstagioResponse,
-                                val dat_ciclo: String,
-                                val dat_selecao: String,
-                                val dat_conclusao_revisada: String,
-                                val obra_latitude: String,
-                                val obra_longitude: String,
+
+data class ConstructionListResponse(val Obras: List<ConstructionResponse>)
+
+data class ConstructionResponse(val id: Int,
+                                val tipo_id: Int,
+                                val nome: String,
+                                val total_investido: Float,
+                                val uf: String,
+                                val municipios: String,
+                                val executor: String,
+                                val estagio_id: Int,
+                                val monitorador: String,
+                                val data_ciclo: String,
+                                val data_selecao: String,
+                                val data_conclusao_revisada: String,
+                                val longitude: String,
+                                val latitude: String,
                                 val emblematica: String,
-                                val observacao: String)
+                                val observacao: String,
+                                val estagio: EstagioResponse,
+                                val tipo: TipoResponse)
+
+class EstagioResponse (
+    val id: Int,
+    val nome: String,
+    val descricao: String
+)
+
+class TipoResponse (
+    val id: Int,
+    val nome: String,
+    val subeixo: String
+)

@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import androidx.annotation.NonNull
 import com.gabe.monop.datasources.BaseRemoteDataSource
 import com.gabe.monop.datasources.apidatasource.ConstructionApiDataSource
-import com.gabe.monop.model.Construction
-import com.gabe.monop.model.ConstructionInvestimentResponse
-import com.gabe.monop.model.ConstructionResponse
-import com.gabe.monop.model.InvestimentResponse
+import com.gabe.monop.model.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -42,6 +39,24 @@ class ConstructionRemoteDataSourceImpl(private val apiDataSource: ConstructionAp
     }
 
     @SuppressLint("CheckResult")
+    override fun getAllConstructions(callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<Construction>>) {
+        apiDataSource.getAllConstructions()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { callback.isLoading(true) }
+            .doAfterTerminate { callback.isLoading(false) }
+            .subscribe({response ->
+                print("Success")
+
+                callback.onSuccess(response.Obras.map { Construction.buildFromResponse(it)})
+
+            },
+                { throwable ->
+                    callback.onError(throwable.localizedMessage)
+                })
+    }
+
+    @SuppressLint("CheckResult")
     override fun getConstructionsByUf(uf: String, callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<Construction>>) {
         apiDataSource.getConstructionsByUf(uf)
             .subscribeOn(Schedulers.io())
@@ -50,11 +65,32 @@ class ConstructionRemoteDataSourceImpl(private val apiDataSource: ConstructionAp
             .doAfterTerminate { callback.isLoading(false) }
             .subscribe({response ->
                 print("Success")
-                callback.onSuccess(response.map { Construction.buildFromResponse(it)})
+
+                callback.onSuccess(response.Obras.map { Construction.buildFromResponse(it)})
+
                 },
                 { throwable ->
                     callback.onError(throwable.localizedMessage)
                 })
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getConstructionsByName(
+        name: String,
+        callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<Construction>>) {
+        apiDataSource.getConstructionsByName(name)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { callback.isLoading(true) }
+            .doAfterTerminate { callback.isLoading(false) }
+            .subscribe({response ->
+                print("Success")
+                callback.onSuccess(response.Obras.map { Construction.buildFromResponse(it)})
+            },
+                { throwable ->
+                    callback.onError(throwable.localizedMessage)
+                })
+
     }
 }
 

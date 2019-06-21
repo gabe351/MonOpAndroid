@@ -52,8 +52,8 @@ class HomeFragment: Fragment(), HomeContracts.View {
     @SuppressLint("SetTextI18n")
     override fun loadInvestments(max: Construction, min: Construction) {
 
-        higherInvestmentButton.text = "Maior: R$ ${max.totalInvestment}"
-        lowerInvestmentButton.text = "Menor: R$ ${min.totalInvestment}"
+        higherInvestmentButton.text = "Maior: ${max.title}"
+        lowerInvestmentButton.text = "Menor: ${min.title}"
 
         val intent = Intent(context, ConstructionDetailActivity::class.java)
 
@@ -122,12 +122,12 @@ class HomeFragment: Fragment(), HomeContracts.View {
         legend.form = Legend.LegendForm.CIRCLE
     }
 
-
     private fun setupRecyclerView() {
         homeFragmentRecycler.adapter = adapter
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         homeFragmentRecycler.layoutManager = layoutManager
         homeFragmentRecycler.isNestedScrollingEnabled = false
+
     }
 
     override fun loadConstructions(construction: List<Construction>) {
